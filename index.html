@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaceLife Control - Missão Espacial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Área de notificações flutuantes -->
+<div id="area-notificacoes" aria-live="polite"></div>
+
+<header>
+  <div class="logo">SPACELIFE CONTROL</div>
+  <div class="status" id="status-missao">🟢 MISSÃO OPERACIONAL</div>
+</header>
+
+<nav aria-label="Menu Principal">
+  <ul>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#telemetria">Telemetria</a></li>
+    <li><a href="#suprimentos">Suprimentos</a></li>
+    <li><a href="#alertas">Alertas</a></li>
+    <li><a href="#relatorios">Relatórios</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <h1>Centro de Controle de Suporte à Vida</h1>
+    <p>
+      Monitoramento em tempo real dos recursos vitais da missão espacial.
+      O operador deve identificar riscos e tomar decisões rapidamente para
+      garantir a segurança da tripulação.
+    </p>
+  </section>
+
+  <!-- PAINEL DE CONTROLE -->
+  <div class="painel-controle">
+    <h2>PAINEL DE CONTROLE</h2>
+
+    <button id="btn-simulacao" class="parado">▶ Iniciar Simulação</button>
+    <button id="btn-emergencia">🚨 Emergência</button>
+    <button id="btn-comunicacao">📡 Comunicação (60s)</button>
+
+    <div class="cronometro-area">
+      <span class="cronometro-label">Janela de Comunicação:</span>
+      <span id="display-cronometro">00:00</span>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard">
+    <div class="grid">
+      <article class="card">
+        <h2>OXIGÊNIO</h2>
+        <div class="telemetry" id="val-oxigenio">82%</div>
+        <p class="label">Nível atual dos reservatórios</p>
+      </article>
+      <article class="card">
+        <h2>ÁGUA</h2>
+        <div class="telemetry" id="val-agua">76%</div>
+        <p class="label">Capacidade disponível</p>
+      </article>
+      <article class="card">
+        <h2>ALIMENTOS</h2>
+        <div class="telemetry" id="val-alimentos">91%</div>
+        <p class="label">Estoque da missão</p>
+      </article>
+      <article class="card">
+        <h2>AUTONOMIA</h2>
+        <div class="telemetry" id="val-autonomia">128</div>
+        <p class="label">Dias restantes</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- TELEMETRIA -->
+  <section id="telemetria" class="card" style="margin-bottom:25px;">
+    <h2>TELEMETRIA DOS SISTEMAS</h2>
+    <div class="grid" style="margin-top:15px;margin-bottom:0;">
+      <article class="card">
+        <h2>TEMPERATURA</h2>
+        <div class="telemetry" id="val-temperatura">23°C</div>
+      </article>
+      <article class="card">
+        <h2>PRESSÃO</h2>
+        <div class="telemetry" id="val-pressao">101.3</div>
+      </article>
+      <article class="card">
+        <h2>UMIDADE</h2>
+        <div class="telemetry" id="val-umidade">48%</div>
+      </article>
+      <article class="card">
+        <h2>CO₂</h2>
+        <div class="telemetry" id="val-co2">0.04%</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SUPRIMENTOS -->
+  <section id="suprimentos" class="card" style="margin-bottom:25px;">
+    <h2>CONTROLE DE SUPRIMENTOS</h2>
+    <table>
+      <thead>
+        <tr><th>Recurso</th><th>Quantidade</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Oxigênio</td>
+          <td id="qtd-oxigenio">820 kg</td>
+          <td id="st-oxigenio" class="status-normal">Normal</td>
+        </tr>
+        <tr>
+          <td>Água</td>
+          <td id="qtd-agua">1540 L</td>
+          <td id="st-agua" class="status-atencao">Atenção</td>
+        </tr>
+        <tr>
+          <td>Alimentos</td>
+          <td id="qtd-alimentos">1200 kg</td>
+          <td id="st-alimentos" class="status-normal">Normal</td>
+        </tr>
+        <tr>
+          <td>Medicamentos</td>
+          <td>95 kits</td>
+          <td class="status-normal">Normal</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ALERTAS -->
+  <section id="alertas" class="card" style="margin-bottom:25px;">
+    <h2>ALERTAS DA MISSÃO</h2>
+    <div id="painel-alertas">
+      <div class="alert-critical">⚠ Nível de água abaixo de 80%. Recomenda-se monitoramento contínuo.</div>
+      <div class="alert-warning">⚠ Consumo de oxigênio acima da média das últimas 24 horas.</div>
+    </div>
+  </section>
+
+  <!-- RELATÓRIOS -->
+  <section id="relatorios" class="card">
+    <h2>GERAR RELATÓRIO</h2>
+    <form id="form-relatorio" novalidate>
+      <input type="text" id="nome-relatorio" placeholder="Nome do relatório" aria-label="Nome do relatório">
+      <input type="date" id="data-relatorio" aria-label="Data">
+      <select id="tipo-relatorio" aria-label="Tipo de relatório">
+        <option>Relatório Diário</option>
+        <option>Relatório Semanal</option>
+        <option>Relatório Mensal</option>
+      </select>
+      <button type="submit" id="btn-relatorio">Gerar Relatório</button>
+      <div id="feedback-form"></div>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <p>SpaceLife Control © 2026 | Sistema de Suporte à Vida em Missões Espaciais</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
